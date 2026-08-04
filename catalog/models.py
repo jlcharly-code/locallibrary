@@ -2,19 +2,6 @@ from django.db import models
 from django.urls import reverse  # Cette fonction est utilisée pour formater les URL
 import uuid  # Ce module est nécessaire à la gestion des identifiants unique (RFC 4122) pour les copies des livres
 
-
-class Genre(models.Model):
-    """Cet objet représente une catégorie ou un genre littéraire."""
-    name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
-    def display_genre(self):
-        """Create a string for the Genre. This is required to display genre in Admin."""
-        return ', '.join(genre.name for genre in self.genre.all()[:5])
-
-    display_genre.short_description = 'Genre'
-    def __str__(self):
-        return self.name
-
-
 class Book(models.Model):
     """Cet objet représente un livre (mais ne traite pas les copies présentes en rayon)."""
     title = models.CharField(max_length=200)
@@ -29,6 +16,19 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:5])
+    display_genre.short_description = 'Genre'
+
+
+class Genre(models.Model):
+    """Cet objet représente une catégorie ou un genre littéraire."""
+    name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
+
+    def __str__(self):
+        return self.name
 
 
 class BookInstance(models.Model):
