@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Auteur : {{ author.last_name }}, {{ author.first_name }}</h1>
+  <p><strong>Né le :</strong> {{ author.date_of_birth }}</p>
+  <p><strong>Décédé le :</strong> {{ author.date_of_death }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Livres</h4>
+    {% for book in author.book_set.all %}
+      <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+    {% empty %}
+      <p>Cet auteur n'a pas de livre associé.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

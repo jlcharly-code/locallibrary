@@ -1,9 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>LocalLibrary</title>
-</head>
-<body>
-    <h1>Bienvenue sur LocalLibrary</h1>
-</body>
-</html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Accueil bibliothèque CHARLIER</h1>
+<p>
+  Bienvenue dans ma bibliothèque - un site web développé par
+  <em>Claude et Jean-Luc</em>!
+</p>
+<h2>Contenu dynamique</h2>
+<p>La bibliothèque dispose des enregistrements suivants:</p>
+<ul>
+  <li><strong>Livres:</strong> {{ num_books }}</li>
+  <li><strong>Copies:</strong> {{ num_instances }}</li>
+  <li><strong>Copies disponibles:</strong> {{ num_instances_available }}</li>
+  <li><strong>Auteurs:</strong> {{ num_authors }}</li>
+  {% if search_word %}
+  <li><strong>Livres contenant "{{ search_word }}":</strong> {{ num_books_containing_word }}</li>
+{% endif %}
+</ul>
+
+<form method="get">
+  <label for="search_word">Rechercher un mot dans les titres :</label>
+  <input type="text" id="search_word" name="search_word" value="{{ search_word }}">
+  <button type="submit">Rechercher</button>
+</form>
+
+{% endblock %}
