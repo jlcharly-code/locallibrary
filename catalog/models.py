@@ -6,7 +6,11 @@ import uuid  # Ce module est nécessaire à la gestion des identifiants unique (
 class Genre(models.Model):
     """Cet objet représente une catégorie ou un genre littéraire."""
     name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:5])
 
+    display_genre.short_description = 'Genre'
     def __str__(self):
         return self.name
 
