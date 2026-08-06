@@ -3,8 +3,8 @@
 {% block content %}
   <h1>Auteur : {{ author.last_name }}, {{ author.first_name }}</h1>
   <p><strong>Né le :</strong> {{ author.date_of_birth }}</p>
-  <p><strong>Décédé le :</strong> {{ author.date_of_death }}</p>
-  <p><strong>Biographie :</p>strong> {{ author.bio}}</p>
+  <p><strong>Décédé le :</strong> ({{ author.date_of_birth }}{% if author.date_of_death %} - {{ author.date_of_death }}{% endif %})</p>
+  <p><strong>Biographie :</strong> {{ author.bio}}</p>
   <h2>Biographie</h2>
   
   <div style="margin-left:20px;margin-top:20px">

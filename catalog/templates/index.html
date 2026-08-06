@@ -15,7 +15,9 @@
   <li><strong>Auteurs:</strong> {{ num_authors }}</li>
   {% if search_word %}
   <li><strong>Livres contenant "{{ search_word }}":</strong> {{ num_books_containing_word }}</li>
-{% endif %}
+  {% endif %}
+  <li>Ce site a été visité {{ num_visits }} fois.</li>
+
 </ul>
 
 <form method="get">

@@ -17,6 +17,11 @@ def index(request):
     else:
         num_books_containing_word = None
 
+    # Nombre de visites à cette vue, compté via la variable de session.
+    num_visits = request.session.get('num_visits', 0)
+    num_visits += 1
+    request.session['num_visits'] = num_visits
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -25,6 +30,7 @@ def index(request):
         'num_genres': num_genres,
         'num_books_containing_word': num_books_containing_word,
         'search_word': search_word,
+        'num_visits': num_visits,
     }
 
     return render(request, 'index.html', context=context)
