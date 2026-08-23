@@ -3,11 +3,15 @@
 {% block content %}
   <h1>Title: {{ book.title }}</h1>
 
+  {% if book.cover_image %}
+    <img src="{{ book.cover_image.url }}" alt="Couverture de {{ book.title }}" style="max-width:200px;">
+  {% endif %}
+
   <p><strong>Auteur:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
   <p><strong>Résumé:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-  <p><strong>Langue:</strong> {{ book.language }}</p>
   <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
+  <p><strong>Langue:</strong> {{ book.language }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Copies</h4>
