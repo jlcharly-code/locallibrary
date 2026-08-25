@@ -24,6 +24,7 @@
              <li><a href="{% url 'index' %}">Accueil</a></li>
              <li><a href="{% url 'books' %}">Tous les livres</a></li>
              <li><a href="{% url 'authors' %}">Tous les auteurs</a></li>
+             <li><a href="https://blog-i7ok.onrender.com">📝 Mon blog</a></li>
              {% if user.is_authenticated %}
              <li>User: {{ user.get_username }}</li>
              <li><a href="{% url 'my-borrowed' %}">Mes emprunts</a></li>
